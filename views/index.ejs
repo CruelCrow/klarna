@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/bundle.css"/>
+
+    <!-- Website Logo -->
+    <link rel="icon"
+          type="image/png"
+          href="/images/logo/favicon.png">
+
+    <!------------------------------->
+
+    <!--------Env Vars--------------->
+    <script type="text/javascript">
+        <%- `API_SERVER_URL='${process.env.API_SERVER_URL}'` %>
+        <%- `ENVIRONMENT='${process.env.NODE_ENV}'` %>
+    </script>
+    <!------------------------------->
+</head>
+<body>
+
+<div id="root"></div>
+<script type="text/javascript" src="/vendor.js"></script>
+<script type="text/javascript" src="/bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+@import "../modules/all";
+
+.error-message {
+  color: red;
+  font-size: 11px;
+}
+
+.error-border {
+  border: 1px solid red;
+}
+
+.show {
+  display: block !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+body {
+  overflow: hidden;
+}
+
+#root {
+  min-height: 100%;
+  #app_wrapper {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: auto;
+
+    #content_outer_wrapper {
+      min-height: 100%;
+      #content_wrapper {
+        min-height: 100%;
+      }
+    }
+
+  }
+}

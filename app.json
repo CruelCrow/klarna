@@ -1,0 +1,21 @@
+{
+  "name": "klarna",
+  "description": "",
+  "repository": "https://github.com/CruelCrow/klarna.git",
+  "env": {
+
+  },
+  "environments": {
+    "development": {
+      "env": {
+      }
+    },
+    "test": {
+      "env": {
+      }
+    }
+  },
+  "scripts": {
+
+  }
+}
