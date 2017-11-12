@@ -11,10 +11,10 @@ class SearchResults extends Component {
 
     render() {
         return (
-            <div>
+            <div className="search-results">
                 <ul>
-                    {this.props.result.persons.map((p)=>{
-                        return <SearchPerson person={p} />
+                    {this.props.result.persons.map((p, i)=>{
+                        return <SearchPerson key={`Person${i}`} person={p} />
                     })}
                 </ul>
             </div>
@@ -27,7 +27,7 @@ SearchResults.defaultProps = {
 };
 
 SearchResults.propTypes = {
-    result: React.PropTypes.objectOf(SearchResult).isRequired
+    result: React.PropTypes.object
 };
 
 export default SearchResults;

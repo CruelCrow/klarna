@@ -17,7 +17,7 @@ class SearchPerson extends Component {
                     {this.props.person.phone &&
                     <span>, <a href={`tel:${this.props.person.phone}`} className="person-phone">{this.props.person.phone}</a></span>}
                 </figcaption>
-                <address>{this.props.person.address}</address>
+                <address>{this.props.person.address.toString()}</address>
             </figure>
         );
     }

@@ -1,6 +1,8 @@
 import XRegExp from 'xregexp';
 
-const nameRegex = XRegExp.globalize(XRegExp('((\\p{L}+[\\.\\-\\\']?)*(\\p{L}+)?\\s)+(\\p{L}+[\\.\\-\\\']?)*(\\p{L}+)?'));
+window.XRegExp = XRegExp;
+
+const nameRegex = XRegExp.globalize(XRegExp('((\\p{L}+[\\.\\-\\\']?)*(\\p{L}+)?\\s*)+(\\p{L}+[\\.\\-\\\']?)*(\\p{L}+)?'));
 
 class QueryRequest {
     constructor(q = '') {
@@ -17,7 +19,10 @@ class QueryRequest {
     _parse() {
         let names = XRegExp.match(this.q, nameRegex);
         if (!!names) {
-            this.name = names[0].trim();
+            names = names.map((n) => n.trim()).filter((n) => !!n); //remove empty entries
+            if (names.length > 0) {
+                this.name = names.map((n) => n.trim())[0];
+            }
         }
 
         this.age = this.q.split(' ').filter((s) => /(^[0-9]$)|(^[1-9][0-9]$)|(^[1][0-9][0-9]$)/.test(s))[0];

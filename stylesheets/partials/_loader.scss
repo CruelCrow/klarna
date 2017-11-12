@@ -1,0 +1,18 @@
+.progress {
+  transform: rotate(-90deg);
+}
+
+.progress__value {
+  stroke-dasharray: 339.292;
+  stroke-dashoffset: 339.292;
+  animation: progress 2s infinite alternate;
+}
+
+@keyframes progress {
+  from {
+    stroke-dashoffset: 339.292;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
