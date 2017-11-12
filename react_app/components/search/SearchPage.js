@@ -38,7 +38,9 @@ class SearchPage extends Component {
         }
 
         if (this.props.searchState.isLoading != !nextProps.searchState.isLoading) {
-            this.performSearch(this.state.lastSearchQuery, true);
+            if (this.state.lastSearchQuery) {
+                this.performSearch(this.state.lastSearchQuery, true);
+            }
         }
     }
 
@@ -70,7 +72,7 @@ class SearchPage extends Component {
                 {!!this.props.searchState.searchResult.persons.length > 0 &&
                 <did className="load-more">
                     {this.props.searchState.isLoading && <Loading visible={true}/>}
-                    <button onClick={this.loadMore}>Load more</button>
+                    <button onClick={this.loadMore} disabled={this.props.searchState.isLoading}>Load more</button>
                 </did>}
             </div>
         )
