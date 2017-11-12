@@ -8,7 +8,6 @@ class Error extends Component {
     }
 
     render() {
-        console.log('!!! this.props.error', this.props.error);
         return (
             <div className="error">
                 {this.props.error.toString()}
