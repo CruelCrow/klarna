@@ -43,6 +43,11 @@ export default function (state = initialState, action) {
                 isLoading: false
             });
             break;
+        case Consts.ACTIONS.CLEAR_SEARCH:
+            return extend({}, state, {
+                searchResult: new SearchResult()
+            });
+            break;
 
         default:
             return state;

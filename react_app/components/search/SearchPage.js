@@ -7,7 +7,7 @@ import Error from './../Error';
 import Loading from './../Loading';
 import SearchQuery from './SearchQuery';
 import SearchResults from './SearchResults';
-import {search, searchEndLoading, searchStartLoading} from './../../actions/search';
+import {search, searchEndLoading, searchStartLoading, clearSearch} from './../../actions/search';
 
 class SearchPage extends Component {
 
@@ -56,9 +56,13 @@ class SearchPage extends Component {
     }
 
     loadMore() {
-        if (this.state.q && (this.state.q.name || this.state.q.age || this.state.q.phone)) {
-            this.props.searchStartLoading();
-            this.props.search(this.state.q.name, this.state.q.age, this.state.q.phone, ++this.state.currentPage);
+        if (this.state.q) {
+            if (this.state.q.q.length == 0) {
+                this.props.clearSearch();
+            } else if (this.state.q.name || this.state.q.age || this.state.q.phone) {
+                this.props.searchStartLoading();
+                this.props.search(this.state.q.name, this.state.q.age, this.state.q.phone, ++this.state.currentPage);
+            }
         }
     }
 
@@ -67,6 +71,7 @@ class SearchPage extends Component {
             <div
                 className={`search-page ${this.props.searchState.isLoading ? 'loading' : ''} ${this.state.lastSearchQuery ? 'search-query-deprecated' : ''}`}>
                 <SearchQuery onChange={this.performSearch} loading={this.props.searchState.isLoading}/>
+                {this.state.q && this.props.searchState.searchResult.persons.length == 0 && !this.props.searchState.isLoading && <div className="no-results">No results</div>}
                 {this.props.searchState.error && <Error error={this.props.searchState.error}/>}
                 <SearchResults result={this.props.searchState.searchResult}/>
                 {!!this.props.searchState.searchResult.persons.length > 0 &&
@@ -86,7 +91,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({search, searchEndLoading, searchStartLoading}, dispatch);
+    return bindActionCreators({search, searchEndLoading, searchStartLoading, clearSearch}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

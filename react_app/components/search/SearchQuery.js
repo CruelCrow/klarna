@@ -17,10 +17,12 @@ class SearchQuery extends Component {
     }
 
     onChange(e) {
-        if (e.target.value.length > 1) {
-            let qr = new QueryRequest(e.target.value);
-            this.props.onChange(qr);
+        if (e.target.value.length == 1) {
+            return;
         }
+
+        let qr = new QueryRequest(e.target.value);
+        this.props.onChange(qr);
     }
 
     render() {

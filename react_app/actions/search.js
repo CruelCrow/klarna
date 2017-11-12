@@ -11,6 +11,12 @@ export function search(name, age, phone, page) {
     }
 }
 
+export function clearSearch() {
+    return {
+        type: Consts.ACTIONS.CLEAR_SEARCH
+    }
+}
+
 export function searchStartLoading() {
     return {
         type: Consts.ACTIONS.SEARCH_START_LOADING

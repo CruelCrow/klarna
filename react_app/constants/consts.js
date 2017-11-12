@@ -14,6 +14,7 @@ const Constants = {
 
     ACTIONS: {
         SEARCH: Symbol(),
+        CLEAR_SEARCH: Symbol(),
         SEARCH_START_LOADING: Symbol(),
         SEARCH_END_LOADING: Symbol()
     },
