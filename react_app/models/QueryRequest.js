@@ -1,7 +1,5 @@
 import XRegExp from 'xregexp';
 
-window.XRegExp = XRegExp;
-
 const nameRegex = XRegExp.globalize(XRegExp('((\\p{L}+[\\.\\-\\\']?)*(\\p{L}+)?\\s*)+(\\p{L}+[\\.\\-\\\']?)*(\\p{L}+)?'));
 
 class QueryRequest {

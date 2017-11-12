@@ -33,6 +33,10 @@ class SearchPage extends Component {
             this.props.searchEndLoading();
         }
 
+        if (!this.props.searchState.error && !!nextProps.searchState.error) {
+            this.props.searchEndLoading();
+        }
+
         if (this.props.searchState.isLoading != !nextProps.searchState.isLoading) {
             this.performSearch(this.state.lastSearchQuery, true);
         }

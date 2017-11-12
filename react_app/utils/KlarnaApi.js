@@ -15,10 +15,9 @@ export default class KlarnaApi {
                     console.log(res);
                     return res;
                 })
-                .catch((res)=>{
-                    console.log('!!! get catch res', res);
-                    console.log(res);
-                    throw new KlarnaApiError(res);
+                .catch((err)=>{
+                    console.log('!!! get catch res', err.response);
+                    throw new KlarnaApiError(err.response);
                 });
         return req;
     }
@@ -28,8 +27,8 @@ export default class KlarnaApi {
                 .then((res)=> {
                     return res;
                 })
-                .catch((res)=>{
-                    throw new KlarnaApiError(res);
+                .catch((err)=>{
+                    throw new KlarnaApiError(err.response);
                 });
         return req;
     }
