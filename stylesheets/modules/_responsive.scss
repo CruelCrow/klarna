@@ -1,0 +1,26 @@
+@mixin desktop {
+  @media
+  screen and (min-device-width: #{$min-desktop-width}) and (min-device-height: #{$min-desktop-width}) and (min-width: #{$min-desktop-width}) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media
+  screen and (max-device-width: #{$min-desktop-width - 1}) and (orientation: portrait),
+  screen and (max-device-height: #{$min-desktop-width - 1}) and (orientation: landscape),
+  screen and (max-width: #{$min-desktop-width - 1}) and (orientation: portrait),
+  screen and (max-width: #{$min-desktop-width - 1}) and (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin small-mobile {
+  @media
+  screen and (max-device-width: #{$min-small-mobile-width - 1}) and (orientation: portrait),
+  screen and (max-device-height: #{$min-small-mobile-width - 1}) and (orientation: landscape),
+  screen and (max-width: #{$min-small-mobile-width - 1}) and (orientation: portrait),
+  screen and (max-width: #{$min-small-mobile-width - 1}) and (orientation: landscape) {
+    @content;
+  }
+}

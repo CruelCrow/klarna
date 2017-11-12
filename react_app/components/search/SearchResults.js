@@ -14,7 +14,7 @@ class SearchResults extends Component {
             <div className="search-results">
                 <ul>
                     {this.props.result.persons.map((p, i)=>{
-                        return <SearchPerson key={`Person${i}`} person={p} />
+                        return <li key={`Person${i}`}><SearchPerson person={p} /></li>
                     })}
                 </ul>
             </div>

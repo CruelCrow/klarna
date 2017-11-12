@@ -63,14 +63,15 @@ class SearchPage extends Component {
     render() {
         return (
             <div
-                className={`${this.props.searchState.isLoading ? 'loading' : ''} ${this.state.lastSearchQuery ? 'search-query-deprecated' : ''}`}>
-                <SearchQuery onChange={this.performSearch}/>
+                className={`search-page ${this.props.searchState.isLoading ? 'loading' : ''} ${this.state.lastSearchQuery ? 'search-query-deprecated' : ''}`}>
+                <SearchQuery onChange={this.performSearch} loading={this.props.searchState.isLoading}/>
                 {this.props.searchState.error && <Error error={this.props.searchState.error}/>}
-                {this.props.searchState.isLoading && <Loading visible={true}/>}
                 <SearchResults result={this.props.searchState.searchResult}/>
-                {this.props.searchState.isLoading && <Loading visible={true}/>}
                 {!!this.props.searchState.searchResult.persons.length > 0 &&
-                <button onClick={this.loadMore}>Load more</button>}
+                <did className="load-more">
+                    {this.props.searchState.isLoading && <Loading visible={true}/>}
+                    <button onClick={this.loadMore}>Load more</button>
+                </did>}
             </div>
         )
     }

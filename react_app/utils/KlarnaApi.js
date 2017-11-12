@@ -11,12 +11,9 @@ export default class KlarnaApi {
         let req =
             axios.get(this._rootAPIUrl(url))
                 .then((res)=> {
-                    console.log('!!! get then res', res);
-                    console.log(res);
                     return res;
                 })
                 .catch((err)=>{
-                    console.log('!!! get catch res', err.response);
                     throw new KlarnaApiError(err.response);
                 });
         return req;

@@ -28,7 +28,7 @@ SearchPerson.defaultProps = {
 };
 
 SearchPerson.propTypes = {
-    person: React.PropTypes.objectOf(Person).isRequired
+    person: React.PropTypes.object.isRequired
 };
 
 export default SearchPerson;

@@ -2,6 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 import {Consts} from './../../constants';
 import {QueryRequest} from './../../models';
+import Loading from './../Loading';
 
 class SearchQuery extends Component {
 
@@ -25,7 +26,8 @@ class SearchQuery extends Component {
     render() {
         return (
             <div className="search-query">
-                <input placeholder="Type your search query" onChange={this.onChange} disabled={this.props.disabled} />
+                {this.props.loading && <Loading visible={true}/>}
+                <input type="text" placeholder="Type your search query" onChange={this.onChange} disabled={this.props.disabled} />
             </div>
         )
     }
@@ -33,12 +35,14 @@ class SearchQuery extends Component {
 
 SearchQuery.defaultProps = {
     onChange: ()=>{},
-    disabled: false
+    disabled: false,
+    loading: false
 };
 
 SearchQuery.propTypes = {
     onChange: React.PropTypes.func.isRequired,
-    disabled: React.PropTypes.bool
+    disabled: React.PropTypes.bool,
+    loading: React.PropTypes.bool
 };
 
 export default SearchQuery;

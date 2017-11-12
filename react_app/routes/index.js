@@ -8,8 +8,8 @@ import {Consts} from '../constants';
 
 export default (
     <Route path="/" component={App}>
-
-        <IndexRoute component={SearchPage}/>
+        <IndexRedirect to="/search" />
+        <Route path="/search" component={SearchPage} />
 
         <Route path="*" component={PageNotFound}/>
 

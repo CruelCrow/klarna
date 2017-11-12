@@ -13,7 +13,7 @@ class App extends Component {
 
     render() {
         return (
-            <div id="app_wrapper">
+            <div id="app-wrapper">
                 {this.props.children}
             </div>
         )

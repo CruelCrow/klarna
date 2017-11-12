@@ -1,0 +1,128 @@
+.search-page {
+  max-width: $max-desktop-content-width;
+  margin: {
+    top: 15px;
+    bottom: 15px;
+    left: auto;
+    right: auto;
+  }
+  padding: {
+    left: $mobile-content-padding;
+    right: $mobile-content-padding;
+  }
+
+  .search-query {
+    width: 100%;
+    input[type="text"] {
+      width: 100%;
+      font-size: xx-large;
+      border: {
+        left: none;
+        top: none;
+        right: none;
+        bottom: 1px solid $klarna-greys-100;
+      }
+      &:focus {
+        outline: 0;
+        border: {
+          left: none;
+          top: none;
+          right: none;
+          bottom: 1px solid $klarna-primary-blue;
+        }
+      }
+    }
+    // Loading
+    position: relative;
+    .progress {
+      position: absolute;
+      right: 0;
+      height: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .search-results {
+    margin-top: 20px;
+    ul {
+      margin: 0;
+      list-style: none;
+      padding: {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+      }
+      li {
+        padding: {
+          left: 0;
+          right: 0;
+          top: 5px;
+          bottom: 5px;
+        }
+        &:not(:last-of-type) {
+          border-bottom: 1px solid $klarna-greys-200;
+        }
+        .person {
+          padding: {
+            left: 0;
+            right: 0;
+            top: 10px;
+            bottom: 10px;
+          }
+          margin: {
+            left: 10px;
+            right: 0;
+            top: 0;
+            bottom: 0;
+          }
+          position: relative;
+          .person-picture {
+            position: absolute;
+            max-height: 50px;
+            max-width: 50px;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+          }
+          figcaption {
+            font-weight: 600;
+          }
+          address {
+            color: $klarna-greys-400;
+          }
+          figcaption, address {
+            padding-left: 70px;
+            line-height: 1.4;
+          }
+        }
+      }
+    }
+  }
+
+  .load-more {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    button {
+      display: block;
+      width: 100%;
+      border: 1px solid $klarna-primary-orange;
+      background-color: transparent;
+      border-radius: 6px;
+      padding: 3px;
+      font-size: large;
+    }
+    // Loading
+    position: relative;
+    .progress {
+      position: absolute;
+      right: 0;
+      height: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
