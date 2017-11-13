@@ -46,12 +46,12 @@ export default function (state = initialState, action) {
                 stillLoading: state.stillLoading
             });
             break;
-        /*case Consts.ACTIONS.SEARCH_END_LOADING:
+        case Consts.ACTIONS.SEARCH_END_LOADING:
             state.stillLoading[action.payload] = false;
             return extend({}, state, {
                 stillLoading: state.stillLoading
             });
-            break;*/
+            break;
         case Consts.ACTIONS.CLEAR_SEARCH:
             return extend({}, state, {
                 searchResult: new SearchResult()
