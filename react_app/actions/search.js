@@ -17,14 +17,16 @@ export function clearSearch() {
     }
 }
 
-export function searchStartLoading() {
+export function searchStartLoading(key = '') {
     return {
-        type: Consts.ACTIONS.SEARCH_START_LOADING
+        type: Consts.ACTIONS.SEARCH_START_LOADING,
+        payload: key
     }
 }
 
-export function searchEndLoading() {
+export function searchEndLoading(key = '') {
     return {
-        type: Consts.ACTIONS.SEARCH_END_LOADING
+        type: Consts.ACTIONS.SEARCH_END_LOADING,
+        payload: key
     }
 }

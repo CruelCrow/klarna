@@ -11,6 +11,10 @@
     right: $mobile-content-padding;
   }
 
+  .error {
+    color: $klarna-primary-red;
+  }
+
   .search-query {
     width: 100%;
     input[type="text"] {

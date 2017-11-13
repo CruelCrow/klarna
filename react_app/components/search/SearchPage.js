@@ -17,42 +17,28 @@ class SearchPage extends Component {
         this.state = {
             q: null,
             currentPage: 0,
-
-            lastAttemptToRecoverAfterErrorTimestamp: new Date(),
-            lastSearchQuery: null,
-            isLoading: false,
-            searchResult: null
+            lastSearchQuery: null
         };
 
         this.performSearch = this.performSearch.bind(this);
         this.loadMore = this.loadMore.bind(this);
+        this.resultKey = this.resultKey.bind(this);
+        this.isLoading = this.isLoading.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.searchState.lastSearchResultTimestamp != nextProps.searchState.lastSearchResultTimestamp) {
-            this.props.searchEndLoading();
-        }
-
-        if (!this.props.searchState.error && !!nextProps.searchState.error) {
-            this.props.searchEndLoading();
-        }
-
-        if (this.props.searchState.isLoading != !nextProps.searchState.isLoading) {
-            if (this.state.lastSearchQuery) {
-                this.performSearch(this.state.lastSearchQuery, true);
-            }
-        }
+    resultKey() {
+        return `Result:name${this.state.q.name ? this.state.q.name : ''}:age${this.state.q.age ? this.state.q.age : ''}:phone${this.state.q.phone ? this.state.q.phone : ''}`;
     }
 
-    performSearch(q, force = false) {
-        if (this.props.searchState.isLoading && !force) {
-            this.state.lastSearchQuery = q;
-        } else {
-            this.state.q = q;
-            this.state.currentPage = 0;
-            this.state.lastSearchQuery = null;
-            this.loadMore();
-        }
+    isLoading() {
+        return Object.values(this.props.searchState.stillLoading).filter((l) => l == true).length > 0;
+    }
+
+    performSearch(q) {
+        this.state.q = q;
+        this.state.currentPage = 0;
+        this.state.lastSearchQuery = null;
+        this.loadMore();
     }
 
     loadMore() {
@@ -60,24 +46,35 @@ class SearchPage extends Component {
             if (this.state.q.q.length == 0) {
                 this.props.clearSearch();
             } else if (this.state.q.name || this.state.q.age || this.state.q.phone) {
-                this.props.searchStartLoading();
+                this.props.searchStartLoading(this.resultKey());
                 this.props.search(this.state.q.name, this.state.q.age, this.state.q.phone, ++this.state.currentPage);
             }
         }
     }
 
     render() {
+        let searchResult = null;
+        if (this.state.q) {
+            searchResult = this.props.searchState.searchResults[this.resultKey()];
+            searchResult = searchResult || this.props.searchState.searchResult;
+        } else {
+            searchResult = this.props.searchState.searchResult;
+        }
+
+        let isLoading = this.isLoading();
+
         return (
             <div
-                className={`search-page ${this.props.searchState.isLoading ? 'loading' : ''} ${this.state.lastSearchQuery ? 'search-query-deprecated' : ''}`}>
-                <SearchQuery onChange={this.performSearch} loading={this.props.searchState.isLoading}/>
-                {this.state.q && this.props.searchState.searchResult.persons.length == 0 && !this.props.searchState.isLoading && <div className="no-results">No results</div>}
+                className={`search-page ${isLoading ? 'loading' : ''} ${this.state.lastSearchQuery ? 'search-query-deprecated' : ''}`}>
+                <SearchQuery onChange={this.performSearch} loading={isLoading} autoFocus={true}/>
+                {this.state.q && searchResult.persons.length == 0 && !isLoading &&
+                <div className="no-results">No results</div>}
                 {this.props.searchState.error && <Error error={this.props.searchState.error}/>}
-                <SearchResults result={this.props.searchState.searchResult}/>
-                {!!this.props.searchState.searchResult.persons.length > 0 &&
+                <SearchResults result={searchResult}/>
+                {!!searchResult.persons.length > 0 &&
                 <did className="load-more">
-                    {this.props.searchState.isLoading && <Loading visible={true}/>}
-                    <button onClick={this.loadMore} disabled={this.props.searchState.isLoading}>Load more</button>
+                    {isLoading && <Loading visible={true}/>}
+                    <button onClick={this.loadMore} disabled={isLoading}>Load more</button>
                 </did>}
             </div>
         )

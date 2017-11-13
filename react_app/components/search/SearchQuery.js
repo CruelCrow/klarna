@@ -29,7 +29,7 @@ class SearchQuery extends Component {
         return (
             <div className="search-query">
                 {this.props.loading && <Loading visible={true}/>}
-                <input type="text" placeholder="Type your search query" onChange={this.onChange} disabled={this.props.disabled} />
+                <input type="text" placeholder="Type your search query" onChange={this.onChange} disabled={this.props.disabled} autoFocus={this.props.autoFocus} />
             </div>
         )
     }
@@ -38,13 +38,15 @@ class SearchQuery extends Component {
 SearchQuery.defaultProps = {
     onChange: ()=>{},
     disabled: false,
-    loading: false
+    loading: false,
+    autoFocus: false
 };
 
 SearchQuery.propTypes = {
     onChange: React.PropTypes.func.isRequired,
     disabled: React.PropTypes.bool,
-    loading: React.PropTypes.bool
+    loading: React.PropTypes.bool,
+    autoFocus: React.PropTypes.bool
 };
 
 export default SearchQuery;
